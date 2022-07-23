@@ -27,7 +27,7 @@ let arr = [
 ]
 //Vars
 let box = document.querySelector('.box');
-let inp = document.querySelector('.text')
+let inp = document.querySelector('.text');
 
 //Finction For creating Element
 function reload (obj) {
@@ -50,19 +50,20 @@ function reload (obj) {
           time.innerHTML = item.time;
           close.innerHTML = '&times;';
 
-
-          title_time.append(title, time)
-          items.append(title_time, close)
-          box.append(items)
+          title_time.append(title, time);
+          items.append(title_time, close);
+          box.append(items);
 
           items.onclick = () => {
-               title.classList.toggle('checked')
+               title.classList.toggle('checked');
                if (title.classList.contains('checked')) {
-                    items.style = 'background: #b2b1b1;'
+                    items.style = 'background: #b2b1b1;';
+                    item.isDone = true;
                } else {
-                    items.style = 'background: #F0F0F0;'
+                    item.isDone = false;
+                    items.style = 'background: #F0F0F0;';
                }
-          }
+          };
 
           close.onclick = () => {
                var g = document.querySelector('.box');
@@ -72,32 +73,28 @@ function reload (obj) {
                          g.children[i].onclick = function () {
                               arr.splice(index, 1);
                               console.log(arr);
-                              reload(arr)
+                              reload(arr);
                          }
                     })(i);
-
                }
           }
-
      }
-     
 }
-reload(arr)
+reload(arr);
+console.log(arr);
 
-let form = document.forms.add
-
-console.log(form);
+let form = document.forms.add;
 
 form.onsubmit = (e) => {
-     e.preventDefault()
+     e.preventDefault();
 
      let obj = {
           id: Math.random(),
           isDone: false,
           time: new Date().getHours() + ":" + new Date().getMinutes()
-     }
+     };
 
-     let fm = new FormData(form) 
+     let fm = new FormData(form);
      fm.forEach((value, key) => {
           if (value.length > "") {
                obj[key] = value;
@@ -106,10 +103,8 @@ form.onsubmit = (e) => {
                inp.value = "";
           } else {
                alert(`Fill the blank don't sand empty blank`)
-               return false; 
-          }
-     })
-     
-     
-}
+               return false;
+          };
+     });
+};
 
